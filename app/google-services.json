@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "638697304558",
+    "project_id": "pas-steffanomn-xrpl2",
+    "storage_bucket": "pas-steffanomn-xrpl2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638697304558:android:fa46e559052626064a9eff",
+        "android_client_info": {
+          "package_name": "com.example.pas_30steffanoxrpl2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638697304558-jiboc13lrrb0frb197dqm8ah5v0ftlrv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pas_30steffanoxrpl2",
+            "certificate_hash": "2a7573f17dcc6172c490715f54922b32bac04437"
+          }
+        },
+        {
+          "client_id": "638697304558-59tamabgkrbdtp9alhe4jn2dd02r4e99.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-lPJqC_DVyu7fVtVD5lQyT4jbcFbRrNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "638697304558-59tamabgkrbdtp9alhe4jn2dd02r4e99.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
