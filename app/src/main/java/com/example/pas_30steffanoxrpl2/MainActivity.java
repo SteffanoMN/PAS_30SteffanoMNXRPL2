@@ -19,8 +19,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String name, email, phone, about, gender;
-    private int age;
+    private String name, phone, email, bio;
     private ArrayList<ContactModel> arrayList;
 
     @Override
@@ -33,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("contacts");
 
-        TextInputEditText txt_name = findViewById(R.id.txt_name);
-        TextInputEditText txt_age = findViewById(R.id.txt_age);
+        TextInputEditText txt_bio = findViewById(R.id.txt_bio);
         TextInputEditText txt_email = findViewById(R.id.txt_email);
+        TextInputEditText txt_name = findViewById(R.id.txt_name);
         TextInputEditText txt_phone = findViewById(R.id.txt_phone);
         Button btn_add = findViewById(R.id.btn_add);
         Button btn_intent = findViewById(R.id.btn_intent);
@@ -44,22 +43,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 name = txt_name.getText().toString();
-                String ageString = txt_age.getText().toString();
-                email = txt_email.getText().toString();
                 phone = txt_phone.getText().toString();
 
-                if (name.trim().isEmpty() || ageString.trim().isEmpty() || email.trim().isEmpty() || phone.trim().isEmpty() || about.trim().isEmpty() || gender.isEmpty()) {
+                if (name.trim().isEmpty() || phone.trim().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please fill all the fields!", Toast.LENGTH_SHORT).show();
                 } else {
-                    age = Integer.parseInt(txt_age.getText().toString());
 
                     String key = myRef.push().getKey();
-                    ContactModel profile = new ContactModel(name, email, phone, gender, about, age);
+                    ContactModel profile = new ContactModel(name, phone);
                     myRef.child(key).setValue(profile);
 
                     txt_name.setText("");
-                    txt_age.setText("");
-                    txt_email.setText("");
                     txt_phone.setText("");
 
                     Toast.makeText(getApplicationContext(), "Data has been successfully added!", Toast.LENGTH_SHORT).show();

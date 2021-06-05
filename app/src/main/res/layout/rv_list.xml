@@ -32,10 +32,19 @@
             android:id="@+id/profile_number_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Desc"
+            android:text="number"
             android:layout_toRightOf="@id/img_list"
             android:layout_toEndOf="@id/img_list"
             android:layout_below="@id/profile_name_list"/>
+
+        <TextView
+            android:id="@+id/profile_bio_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bio"
+            android:layout_toRightOf="@id/img_list"
+            android:layout_toEndOf="@id/img_list"
+            android:layout_below="@id/profile_number_list"/>
 
     </RelativeLayout>
 

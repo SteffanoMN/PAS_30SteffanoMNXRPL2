@@ -9,8 +9,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.LayoutAnimationController;
+import android.view.animation.TranslateAnimation;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +35,8 @@ public class ContactActivity extends AppCompatActivity {
     private ArrayList<ContactModel> arrayList;
     private RecyclerView recyclerView;
     private WhatsAppAdapter adapter;
+    EditText search;
+    CharSequence searchresult="";
 
     private final int REQUEST_CODE = 101;
 
@@ -38,6 +48,23 @@ public class ContactActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv_main);
 
         addData();
+
+        AnimationSet set = new AnimationSet(true);
+
+        Animation animation = new AlphaAnimation(0.0f, 1.0f);
+        animation.setDuration(500);
+        set.addAnimation(animation);
+
+        animation = new TranslateAnimation(
+                Animation.RELATIVE_TO_SELF, -1.0f, Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f
+        );
+        animation.setDuration(100);
+        set.addAnimation(animation);
+
+        LayoutAnimationController controller = new LayoutAnimationController(set, 0.5f);
+
+        recyclerView.setLayoutAnimation(controller);
     }
 
     private void addData() {
@@ -64,7 +91,7 @@ public class ContactActivity extends AppCompatActivity {
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setAdapter(adapter);
 
-                adapter.setOnItemClickListener(new WhatsAppAdapter().OnItemClickListener() {
+                adapter.setOnItemClickListener(new WhatsAppAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(int position) {
                         ProgressDialog progressDialog = new ProgressDialog(ContactActivity.this);
@@ -81,23 +108,14 @@ public class ContactActivity extends AppCompatActivity {
 
                                 progressDialog.dismiss();
 
-                                String name, email, phone, about, gender;
-                                int age;
+                                String name, phone;
 
                                 name = arrayList.get(position).getName();
-                                email = arrayList.get(position).getEmail();
                                 phone = arrayList.get(position).getPhone();
-                                about = arrayList.get(position).getAbout();
-                                gender = arrayList.get(position).getGender();
-                                age = arrayList.get(position).getAge();
 
                                 Intent intent = new Intent(getApplicationContext(), EditActivity.class);
                                 intent.putExtra("name", name);
-                                intent.putExtra("email", email);
                                 intent.putExtra("phone", phone);
-                                intent.putExtra("about", about);
-                                intent.putExtra("gender", gender);
-                                intent.putExtra("age", age);
                                 intent.putExtra("key", key);
                                 startActivityForResult(intent, REQUEST_CODE);
                             }
@@ -114,6 +132,22 @@ public class ContactActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s);
+                searchresult = s;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
     }

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -12,9 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class WhatsAppAdapter extends RecyclerView.Adapter<WhatsAppAdapter.ListViewHolder> {
+public class WhatsAppAdapter extends RecyclerView.Adapter<WhatsAppAdapter.ListViewHolder> implements Filterable  {
 
     private ArrayList<ContactModel> dataList;
+    private ArrayList<ContactModel> dataListFilter;
     private OnItemClickListener mListener;
     private Context mContext;
 
@@ -47,6 +50,35 @@ public class WhatsAppAdapter extends RecyclerView.Adapter<WhatsAppAdapter.ListVi
     @Override
     public int getItemCount() {
         return (dataList != null) ? dataList.size() : 0;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String Key = constraint.toString();
+                if (Key.isEmpty()){
+                    dataListFilter = dataList;
+                } else {
+                    ArrayList<ContactModel> isFiltered = new ArrayList<>();
+                    for (ContactModel row : dataList) {
+                        if (row.getName().toLowerCase().contains(Key)) {
+                            isFiltered.add(row);
+                        }
+                    }
+                    dataListFilter = isFiltered;
+                }
+                FilterResults results = new FilterResults();
+                results.values = dataListFilter;
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                dataListFilter = (ArrayList<ContactModel>) results.values;
+            }
+        };
     }
 
     public class ListViewHolder extends RecyclerView.ViewHolder {
