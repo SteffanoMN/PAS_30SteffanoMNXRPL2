@@ -45,6 +45,7 @@ public class WhatsAppAdapter extends RecyclerView.Adapter<WhatsAppAdapter.ListVi
     public void onBindViewHolder(ListViewHolder holder, int position) {
         holder.profile_name.setText(dataList.get(position).getName());
         holder.profile_number.setText(dataList.get(position).getPhone());
+        holder.profile_bio.setText(dataList.get(position).getBio());
     }
 
     @Override
@@ -82,7 +83,7 @@ public class WhatsAppAdapter extends RecyclerView.Adapter<WhatsAppAdapter.ListVi
     }
 
     public class ListViewHolder extends RecyclerView.ViewHolder {
-        private TextView profile_name, profile_number;
+        private TextView profile_name, profile_number, profile_bio;
         private ImageView img_list;
         private RelativeLayout relativeLayout;
 
@@ -90,6 +91,7 @@ public class WhatsAppAdapter extends RecyclerView.Adapter<WhatsAppAdapter.ListVi
             super(itemView);
             profile_name = itemView.findViewById(R.id.profile_name_list);
             profile_number = itemView.findViewById(R.id.profile_number_list);
+            profile_bio = itemView.findViewById(R.id.profile_bio_list);
             img_list = itemView.findViewById(R.id.img_list);
             relativeLayout = itemView.findViewById(R.id.rv_layout_list);
 

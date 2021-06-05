@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".EditActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,88 +48,87 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_txt_name"
+            android:id="@+id/layout_txt_name_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:hint="Name">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txt_name"
+                android:id="@+id/txt_name_edit"
                 android:layout_width="380dp"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:layout_gravity="center"
-                />
+                android:layout_gravity="center" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_txt_phone"
+            android:id="@+id/layout_txt_phone_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:hint="Phone">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txt_phone"
+                android:id="@+id/txt_phone_edit"
                 android:layout_width="380dp"
-                android:layout_gravity="center"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:inputType="number"
+                android:layout_gravity="center"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_txt_email"
-            android:layout_width="380dp"
+            android:id="@+id/layout_txt_email_edit"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:layout_gravity="center"
             android:hint="Email">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txt_email"
-                android:layout_width="match_parent"
+                android:id="@+id/txt_email_edit"
+                android:layout_width="380dp"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:layout_gravity="center" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_txt_bio"
-            android:layout_width="380dp"
+            android:id="@+id/layout_txt_bio_edit"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:layout_gravity="center"
             android:hint="Description">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txt_bio"
+                android:id="@+id/txt_bio_edit"
+                android:layout_width="380dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:gravity="top|start"
                 android:inputType="textMultiLine"
                 android:lines="5"
                 android:maxLines="100"
-                android:gravity="top|start"
-                android:scrollbars="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:scrollbars="vertical" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <Button
+            android:id="@+id/btn_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Edit Data" />
 
         <Button
-            android:id="@+id/btn_add"
-            android:text="Add Data"
-            android:layout_gravity="center"
+            android:id="@+id/btn_delete"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <Button
-            android:id="@+id/btn_intent"
-            android:text="Contacts"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:backgroundTint="@android:color/holo_red_light"
+            android:text="Delete Data" />
 
     </LinearLayout>
 

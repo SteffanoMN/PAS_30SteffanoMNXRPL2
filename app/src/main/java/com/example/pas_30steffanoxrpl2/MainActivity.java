@@ -43,18 +43,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 name = txt_name.getText().toString();
+                email = txt_email.getText().toString();
                 phone = txt_phone.getText().toString();
+                bio = txt_bio.getText().toString();
 
-                if (name.trim().isEmpty() || phone.trim().isEmpty()) {
+                if (name.trim().isEmpty() || phone.trim().isEmpty() || email.trim().isEmpty() || bio.trim().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please fill all the fields!", Toast.LENGTH_SHORT).show();
                 } else {
 
                     String key = myRef.push().getKey();
-                    ContactModel profile = new ContactModel(name, phone);
+                    ContactModel profile = new ContactModel(name, phone, bio, email);
                     myRef.child(key).setValue(profile);
 
                     txt_name.setText("");
+                    txt_email.setText("");
                     txt_phone.setText("");
+                    txt_bio.setText("");
 
                     Toast.makeText(getApplicationContext(), "Data has been successfully added!", Toast.LENGTH_SHORT).show();
                 }

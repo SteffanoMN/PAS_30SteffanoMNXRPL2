@@ -65,6 +65,22 @@ public class ContactActivity extends AppCompatActivity {
         LayoutAnimationController controller = new LayoutAnimationController(set, 0.5f);
 
         recyclerView.setLayoutAnimation(controller);
+
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s);
+                searchresult = s;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
     }
 
     private void addData() {
@@ -108,14 +124,18 @@ public class ContactActivity extends AppCompatActivity {
 
                                 progressDialog.dismiss();
 
-                                String name, phone;
+                                String name, phone, email, bio;
 
                                 name = arrayList.get(position).getName();
+                                email = arrayList.get(position).getEmail();
                                 phone = arrayList.get(position).getPhone();
+                                bio = arrayList.get(position).getBio();
 
                                 Intent intent = new Intent(getApplicationContext(), EditActivity.class);
                                 intent.putExtra("name", name);
+                                intent.putExtra("email", email);
                                 intent.putExtra("phone", phone);
+                                intent.putExtra("bio", bio);
                                 intent.putExtra("key", key);
                                 startActivityForResult(intent, REQUEST_CODE);
                             }
@@ -132,22 +152,6 @@ public class ContactActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-
-        search.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                adapter.getFilter().filter(s);
-                searchresult = s;
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
             }
         });
     }
