@@ -64,7 +64,7 @@ public class WhatsAppAdapter extends RecyclerView.Adapter<WhatsAppAdapter.ListVi
                 } else {
                     ArrayList<ContactModel> isFiltered = new ArrayList<>();
                     for (ContactModel row : dataList) {
-                        if (row.getName().toLowerCase().contains(Key)) {
+                        if (row.getName().toLowerCase().contains(Key) || row.getPhone().contains(Key)) {
                             isFiltered.add(row);
                         }
                     }
