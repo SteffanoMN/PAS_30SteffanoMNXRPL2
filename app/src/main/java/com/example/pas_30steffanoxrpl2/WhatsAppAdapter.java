@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public class WhatsAppAdapter extends RecyclerView.Adapter<WhatsAppAdapter.ListViewHolder> {
 
     private ArrayList<ContactModel> dataList;
-    private ArrayList<ContactModel> dataListFilter;
     private OnItemClickListener mListener;
     private Context mContext;
 

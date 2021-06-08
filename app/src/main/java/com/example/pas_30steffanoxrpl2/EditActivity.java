@@ -69,7 +69,7 @@ public class EditActivity extends AppCompatActivity {
 
                 ContactModel contact = new ContactModel(name, email, phone, bio);
                 reference.setValue(contact);
-                Toast.makeText(getApplicationContext(), "Data has been edited", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Data telah diedit", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
                 setResult(RESULT_OK, intent);
                 finish();
@@ -83,7 +83,7 @@ public class EditActivity extends AppCompatActivity {
                 DatabaseReference reference = database.getReference().child("contacts").child(key);
 
                 ProgressDialog progressDialog = new ProgressDialog(EditActivity.this);
-                progressDialog.setMessage("Deleting your data...");
+                progressDialog.setMessage("Menghapus data anda...");
                 progressDialog.show();
 
                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -93,7 +93,7 @@ public class EditActivity extends AppCompatActivity {
                             dataSnapshot.getRef().removeValue();
                         }
                         progressDialog.dismiss();
-                        Toast.makeText(getApplicationContext(), "Data has been deleted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Data telah dihapus", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent();
                         setResult(RESULT_OK, intent);
                         finish();

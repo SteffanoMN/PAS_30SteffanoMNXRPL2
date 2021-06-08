@@ -48,8 +48,6 @@ public class ContactActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv_main);
 
         addData();
-
-
     }
 
     private void addData() {

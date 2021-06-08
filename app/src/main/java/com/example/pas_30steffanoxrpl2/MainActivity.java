@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 bio = txt_bio.getText().toString();
 
                 if (name.trim().isEmpty() || phone.trim().isEmpty() || email.trim().isEmpty() || bio.trim().isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Please fill all the fields!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Tolong isi semua kotak yang tersedia", Toast.LENGTH_SHORT).show();
                 } else {
 
                     String key = myRef.push().getKey();
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                     txt_phone.setText("");
                     txt_bio.setText("");
 
-                    Toast.makeText(getApplicationContext(), "Data has been successfully added!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Data sudah berhasil ditambahkan!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
