@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class WhatsAppAdapter extends RecyclerView.Adapter<WhatsAppAdapter.ListViewHolder> implements Filterable  {
+public class WhatsAppAdapter extends RecyclerView.Adapter<WhatsAppAdapter.ListViewHolder> {
 
     private ArrayList<ContactModel> dataList;
     private ArrayList<ContactModel> dataListFilter;
@@ -51,35 +51,6 @@ public class WhatsAppAdapter extends RecyclerView.Adapter<WhatsAppAdapter.ListVi
     @Override
     public int getItemCount() {
         return (dataList != null) ? dataList.size() : 0;
-    }
-
-    @Override
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-                String Key = constraint.toString();
-                if (Key.isEmpty()){
-                    dataListFilter = dataList;
-                } else {
-                    ArrayList<ContactModel> isFiltered = new ArrayList<>();
-                    for (ContactModel row : dataList) {
-                        if (row.getName().toLowerCase().contains(Key) || row.getPhone().contains(Key)) {
-                            isFiltered.add(row);
-                        }
-                    }
-                    dataListFilter = isFiltered;
-                }
-                FilterResults results = new FilterResults();
-                results.values = dataListFilter;
-                return results;
-            }
-
-            @Override
-            protected void publishResults(CharSequence constraint, FilterResults results) {
-                dataListFilter = (ArrayList<ContactModel>) results.values;
-            }
-        };
     }
 
     public class ListViewHolder extends RecyclerView.ViewHolder {
