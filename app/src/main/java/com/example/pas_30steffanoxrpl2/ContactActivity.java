@@ -114,6 +114,39 @@ public class ContactActivity extends AppCompatActivity {
                         });
                     }
                 });
+
+                AnimationSet set = new AnimationSet(true);
+
+                Animation animation = new AlphaAnimation(0.0f, 1.0f);
+                animation.setDuration(500);
+                set.addAnimation(animation);
+
+                animation = new TranslateAnimation(
+                        Animation.RELATIVE_TO_SELF, -1.0f, Animation.RELATIVE_TO_SELF, 0.0f,
+                        Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f
+                );
+                animation.setDuration(100);
+                set.addAnimation(animation);
+
+                LayoutAnimationController controller = new LayoutAnimationController(set, 0.5f);
+
+                recyclerView.setLayoutAnimation(controller);
+
+                search.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        adapter.getFilter().filter(s);
+                        searchresult = s;
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                    }
+                });
             }
 
             @Override
