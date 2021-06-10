@@ -36,7 +36,6 @@ public class ContactActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private WhatsAppAdapter adapter;
     EditText search;
-    CharSequence searchresult="";
 
     private final int REQUEST_CODE = 101;
 
